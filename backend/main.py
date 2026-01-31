@@ -2,8 +2,8 @@ from fastapi import FastAPI, UploadFile, Form
 import os, uuid, cv2, torch
 import numpy as np
 
-from sam2.sam2.build_sam import build_sam2
-from sam2.sam2.sam2_image_predictor import SAM2ImagePredictor
+from sam2.build_sam import build_sam2
+from sam2.sam2_image_predictor import SAM2ImagePredictor
 
 from clothing_regions import get_prompts
 
