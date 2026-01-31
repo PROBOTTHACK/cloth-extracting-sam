@@ -1,19 +1,25 @@
+import os
 import sys
-print("🔵 Starting server file", flush=True)
-
 from pyngrok import ngrok
-print("🟢 Imported ngrok", flush=True)
-
 import uvicorn
-print("🟢 Imported uvicorn", flush=True)
 
-# Open public tunnel
-print("🟡 Opening ngrok tunnel...", flush=True)
+# Absolute path to repo
+REPO_PATH = "/kaggle/working/cloth-extracting-sam"
+
+# Add repo to PYTHONPATH
+sys.path.insert(0, REPO_PATH)
+
+# Change working directory away from sam2 repo (important)
+os.chdir("/kaggle/working")
+
+print("📁 CWD:", os.getcwd(), flush=True)
+print("📦 PYTHONPATH:", sys.path[:2], flush=True)
+
+# Start ngrok
 public_url = ngrok.connect(8000)
 print("🚀 PUBLIC API URL:", public_url, flush=True)
 
-# Start FastAPI server
-print("🟣 Starting FastAPI...", flush=True)
+# Start FastAPI
 uvicorn.run(
     "backend.main:app",
     host="0.0.0.0",
